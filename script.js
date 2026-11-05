@@ -457,6 +457,5 @@
     initDesktopNav();
     initNavTheme();
     initFlow();
-    initMenu();
   });
 })();
