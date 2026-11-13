@@ -105,16 +105,16 @@
 
   /* ---------- Work filter ---------- */
   var projects = [
-    { name: "Ocean Plate", cat: "Branding", line: "A brand identity for global shelves.", href: "ocean-plate.html" ,image: "assets/images/ocean-hero.webp"},
-    { name: "Galangal", cat: "Social Media", line: "Pan-Asian dining, told one post at a time." }, 
-    { name: "AMD", cat: "Branding", line: "An identity refresh with a Kolhapuri soul.", href: "amd.html" ,image: "assets/images/amd-hero.webp"},
-    { name: "Niyaaz", cat: "Performance", line: "Filling tables with ads tuned for footfall." },
+    { name: "Ocean Plate", cat: "Branding", line: "A brand identity for global shelves.", href: "ocean-plate.html" ,image: "assets/images/ocean_logo.webp"},
+    { name: "Galangal", cat: "Social Media", line: "Pan-Asian dining, told one post at a time." , href: "galangal.html" ,image: "assets/images/ramen.webp"}, 
+    { name: "AMD", cat: "Branding", line: "An identity refresh with a Kolhapuri soul.", href: "amd.html" ,image: "assets/images/amd-thali.png"},
     { name: "Navieo", cat: "Social Media", line: "A D2C clothing label built on the feed." , href: "navieo.html" ,image: "assets/images/navieo.webp " },
-    { name: "TBQ", cat: "Production", line: "Celebrations captured for The Banquet Company." },
-    { name: "Annostav", cat: "Online Marketing", line: "Digital growth, channel by channel.", href: "annovstav.html" ,image: "assets/images/annovstav-hero.webp "},
-    { name: "Belcon", cat: "Online Marketing", line: "A retail growth narrative built for the boardroom."  ,href: "belcon.html" ,image: "assets/images/belcon.webp "},
+    // { name: "TBQ", cat: "Production", line: "Celebrations captured for The Banquet Company." },
+    { name: "Annostav", cat: "Offline Marketing", line: "Digital growth, channel by channel.", href: "annovstav.html" ,image: "assets/images/annovstav-hero.webp "},
     { name: "Creamaai", cat: "Online Marketing", line: "Scroll-stopping campaigns for a sweet brand.", href: "creamaai.html" ,image: "assets/images/creamaai-hero.webp "},
     { name: "Yali Rudraksha", cat: "Branding", line: "Provenance over certification.", href: "yali-rudraksha.html" ,image: "assets/images/ylogo.webp "},
+    { name: "Belcon", cat: ["Online Marketing", "Offline Marketing"], line: "A retail growth narrative built for the boardroom.", href: "belcon.html", image: "assets/images/belcon.webp "},
+    { name: "Niyaaz", cat: "Performance", line: "Filling tables with ads tuned for footfall." , href: "niyaaz.html" ,image: "assets/images/biryani.jpeg"},
     { name: "The Holy Bites", cat: "Production", line: "Food films that make you hungry." , href: "holy-bites.html" ,image: "assets/images/hb1.webp "},
     { name: "AKP Ferrocast", cat: "Branding", line: "Repositioning a 1978 iron-casting OEM for global buyers." , href: "akp.html" ,image: "assets/images/akp-hero.webp "},
     { name: "Sunny's In A Bottle", cat: "Production", line: "Bottled sunshine, shot in-house." , href: "sunnys.html"  ,image: "assets/images/suunys-hero.webp "},
@@ -129,7 +129,9 @@
       return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
     function render(cat) {
-      var list = projects.filter(function (p) { return cat === "All" || p.cat === cat; });
+     var list = projects.filter(function (p) {
+    return cat === "All" || (Array.isArray(p.cat) ? p.cat.includes(cat) : p.cat === cat);
+});
       grid.innerHTML = list.map(function (p, i) {
         return '<div class="work-item" style="animation-delay:' + (i * 60) + 'ms">' +
           (p.href ? '<a href="' + p.href + '" style="display:block;color:inherit;text-decoration:none;">' : '') +
@@ -138,7 +140,7 @@
 '<span class="arrow">↗</span>' +
 '<div class="work-info">' +
           '<h3>' + esc(p.name) + '</h3>' +
-          '<span class="work-cat">' + esc(p.cat) + '</span>' +
+         '<span class="work-cat">' + esc(Array.isArray(p.cat) ? p.cat.join(" & ") : p.cat) + '</span>' +
           '<p class="work-line">' + esc(p.line) + '</p>' +
           '</div></div>' +
           (p.href ? '</a>' : '') +
@@ -446,6 +448,76 @@
     update();
   }
 
+    /* ---------- Nav auto-hide: always visible in the hero; after it, hides on scroll down and slides back on scroll up ---------- */
+  function initNavAutoHide() {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+    var hero = document.querySelector("[data-nav-hero]") || document.querySelector("main > section") || document.querySelector("main");
+    if (!hero) return;
+    var lastY = window.pageYOffset, ticking = false;
+
+    function heroEnd() { return hero.getBoundingClientRect().bottom + window.pageYOffset - header.offsetHeight; }
+    function setHidden(h) {
+      header.classList.toggle("nav-hidden", h);
+      if (h) header.classList.remove("is-pinned");
+    }
+    function update() {
+      ticking = false;
+      var y = window.pageYOffset;
+      var past = y > heroEnd();
+      var busy = document.querySelector(".nav-menu.open") || header.contains(document.activeElement);
+      if (!past || busy) {
+        setHidden(false);
+        header.classList.remove("is-pinned");
+      } else if (y > lastY + 6) {
+        setHidden(true);
+      } else if (y < lastY - 6) {
+        setHidden(false);
+        header.classList.add("is-pinned");
+      }
+      if (Math.abs(y - lastY) > 6 || !past) lastY = y;
+    }
+    function request() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    update();
+  }
+
+  /* ---------- Brand logo strip: repeats the logos to fill any screen width, then loops them smoothly ---------- */
+  function initLogoStrip() {
+    var track = document.querySelector(".ss-logos-track");
+    if (!track) return;
+    var SPEED = 50;                                         /* pixels per second: lower = slower */
+    var originals = [].slice.call(track.children).filter(function (n) { return n.nodeType === 1; })
+      .map(function (n) { return n.cloneNode(true); });
+    if (!originals.length) return;
+    function build() {
+      track.classList.remove("is-ready");
+      track.innerHTML = "";
+      function addSet(copy) {
+        originals.forEach(function (o) {
+          var c = o.cloneNode(true);
+          if (copy) c.setAttribute("aria-hidden", "true");
+          track.appendChild(c);
+        });
+      }
+      addSet(false);
+      var need = window.innerWidth + 200, guard = 0;
+      while (track.scrollWidth < need && guard++ < 20) addSet(true);
+      [].slice.call(track.children).forEach(function (el) {   /* second half, so the loop is seamless */
+        var c = el.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        track.appendChild(c);
+      });
+      track.style.animationDuration = (track.scrollWidth / 2 / SPEED) + "s";
+      track.classList.add("is-ready");
+    }
+    build();
+    window.addEventListener("load", build);
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(build, 250); });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initMenu();
     initYear();
@@ -456,6 +528,7 @@
     initCounters();
     initDesktopNav();
     initNavTheme();
+    initLogoStrip();
     initFlow();
   });
 })();

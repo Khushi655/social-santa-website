@@ -7223,3 +7223,28 @@ code {
     width: 84vw;
   }
 }
+
+.site-header {
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+.site-header.nav-hidden {
+  transform: translateY(-120%);
+}
+.site-header.is-pinned {
+  background-color: color-mix(in oklab, var(--background) 80%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0.5rem 1.5rem -1rem rgba(20, 10, 30, 0.3);
+}
+.site-header.is-pinned.nav-on-dark {
+  background-color: color-mix(in oklab, var(--ink) 78%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+}

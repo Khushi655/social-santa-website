@@ -421,7 +421,7 @@
 
       background: #d2c6ff;
       color: #171717;
-      padding: 1.4rem 0;
+      padding: 1.2rem 0;
       overflow: hidden;
     }
 
@@ -437,9 +437,14 @@
 
     .ss-logos-track {
       display: flex;
+      align-items: center;
       width: max-content;
-      gap: 2.5rem;
       white-space: nowrap;
+      animation: none
+    }
+
+    /* script.js repeats the logos to fill the screen, then adds .is-ready to start the loop */
+    .ss-logos-track.is-ready {
       animation: marquee 60s linear infinite
     }
 
@@ -450,15 +455,20 @@
     .ss-logo {
       display: inline-flex;
       align-items: center;
-      gap: 2.5rem;
-      font-size: 1.4rem;
-      font-weight: 700;
-      opacity: .85
+      flex: 0 0 auto;
+      padding-right: 4.5rem
     }
 
-    .ss-logo i {
-      font-style: normal;
-      color: var(--primary)
+    .ss-logo img {
+      display: block;
+      height: var(--h, 3rem);
+      width: auto;
+      max-width: none;
+      transition: transform .3s ease
+    }
+
+    .ss-logo:hover img {
+      transform: scale(1.07)
     }
 
     /* ===== INSIGHT ===== */
@@ -1547,9 +1557,10 @@
             </li>
             <li class="nav-item" style="--i:2"><a href="work.html" class="nav-link">Work</a></li>
 
-            <li class="nav-item has-sub" style="--i:1"><a href="services.html" class="nav-link">Services</a><button
+            <li class="nav-item has-sub" style="--i:1"><a href="services.html" class="nav-link">Services</a>
+              <!-- <button
                 type="button" class="nav-sub-toggle" aria-expanded="false" aria-controls="nav-sub"
-                aria-label="Show services"><span aria-hidden="true"></span></button>
+                aria-label="Show services"><span aria-hidden="true"></span></button> -->
               <!-- <div class="nav-sub" id="nav-sub">
                 <ul>
                   <li><a href="brand-strategy.html">Brand strategy</a></li>
@@ -1778,17 +1789,17 @@
             <img src="assets/images/belcon.webp" alt="Belcon project" loading="lazy">
             <!-- <span class="ss-tile-ph" aria-hidden="true">Belcon</span> -->
             <span class="ss-tile-over"><span class="ss-tile-name">Belcon</span><span class="ss-tile-cat">Online
-                Marketing</span><span class="ss-tile-go" aria-hidden="true">↗</span></span>
+                Marketing &amp; Offline Marketing</span><span class="ss-tile-go" aria-hidden="true">↗</span></span>
           </a>
           <a class="ss-tile" href="galangal.html">
-            <!-- <img src="assets/images/work/galangal.jpg" alt="Galangal project" loading="lazy"> -->
-            <span class="ss-tile-ph" aria-hidden="true">Galangal</span>
+            <img src="assets/images/rolls.webp" alt="Galangal project" loading="lazy">
+            <!-- <span class="ss-tile-ph" aria-hidden="true">Galangal</span> -->
             <span class="ss-tile-over"><span class="ss-tile-name">Galangal</span><span class="ss-tile-cat">Social
                 Media</span><span class="ss-tile-go" aria-hidden="true">↗</span></span>
           </a>
           <a class="ss-tile" href="niyaaz.html">
-            <!-- <img src="assets/images/work/niyaaz.jpg" alt="Niyaaz project" loading="lazy"> -->
-            <span class="ss-tile-ph" aria-hidden="true">Niyaaz</span>
+            <img src="assets/images/biryani.jpeg" alt="Niyaaz project" loading="lazy">
+            <!-- <span class="ss-tile-ph" aria-hidden="true">Niyaaz</span> -->
             <span class="ss-tile-over"><span class="ss-tile-name">Niyaaz</span><span
                 class="ss-tile-cat">Performance</span><span class="ss-tile-go" aria-hidden="true">↗</span></span>
           </a>
@@ -1848,7 +1859,7 @@
                     <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
                   </svg></button>
               </div>
-              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Branding</span></div>
+              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Performance</span></div>
             </div>
 
             <!-- VIDEO 2 -->
@@ -1868,7 +1879,7 @@
                     <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
                   </svg></button>
               </div>
-              <div class="ss-yt-meta"><strong>Brand film</strong><span>Film &amp; photography</span></div>
+              <div class="ss-yt-meta"><strong>Assal Mawala Darbar</strong><span>Branding &amp; packaging</span></div>
             </div>
 
             <!-- VIDEO 3 -->
@@ -1910,7 +1921,91 @@
                     <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
                   </svg></button>
               </div>
-              <div class="ss-yt-meta"><strong>Studio showreel</strong><span>Showreel</span></div>
+              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Performance</span></div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div class="ss-yt-card">
+              <div class="ss-yt-shape">
+                <video muted loop playsinline preload="metadata" poster="assets/images/video-3.jpg">
+                  <source src="assets/videos/video5.mp4" type="video/mp4">
+                </video>
+                <button type="button" class="ss-yt-play" aria-label="Play Studio showreel video"><svg
+                    viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg></button>
+                <button type="button" class="ss-yt-sound" aria-label="Turn sound on" aria-pressed="false"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" />
+                    <path class="x" d="M16 9l5 6M21 9l-5 6" />
+                    <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+                  </svg></button>
+              </div>
+              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Performance</span></div>
+            </div>
+
+            <!-- VIDEO 6 -->
+            <div class="ss-yt-card">
+              <div class="ss-yt-shape">
+                <video muted loop playsinline preload="metadata" poster="assets/images/video-3.jpg">
+                  <source src="assets/videos/video6.mp4" type="video/mp4">
+                </video>
+                <button type="button" class="ss-yt-play" aria-label="Play Studio showreel video"><svg
+                    viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg></button>
+                <button type="button" class="ss-yt-sound" aria-label="Turn sound on" aria-pressed="false"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" />
+                    <path class="x" d="M16 9l5 6M21 9l-5 6" />
+                    <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+                  </svg></button>
+              </div>
+              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Performance</span></div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div class="ss-yt-card">
+              <div class="ss-yt-shape">
+                <video muted loop playsinline preload="metadata" poster="assets/images/video-3.jpg">
+                  <source src="assets/videos/video7.mp4" type="video/mp4">
+                </video>
+                <button type="button" class="ss-yt-play" aria-label="Play Studio showreel video"><svg
+                    viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg></button>
+                <button type="button" class="ss-yt-sound" aria-label="Turn sound on" aria-pressed="false"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" />
+                    <path class="x" d="M16 9l5 6M21 9l-5 6" />
+                    <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+                  </svg></button>
+              </div>
+              <div class="ss-yt-meta"><strong>Assal Mawala Darbar</strong><span>Branding &amp; packaging</span></div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div class="ss-yt-card">
+              <div class="ss-yt-shape">
+                <video muted loop playsinline preload="metadata" poster="assets/images/video-3.jpg">
+                  <source src="assets/videos/video8.mp4" type="video/mp4">
+                </video>
+                <button type="button" class="ss-yt-play" aria-label="Play Studio showreel video"><svg
+                    viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg></button>
+                <button type="button" class="ss-yt-sound" aria-label="Turn sound on" aria-pressed="false"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" />
+                    <path class="x" d="M16 9l5 6M21 9l-5 6" />
+                    <path class="w" d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+                  </svg></button>
+              </div>
+              <div class="ss-yt-meta"><strong>Niyaaz</strong><span>Performance</span></div>
             </div>
 
             <!-- To add another video: copy one block above, change the title, category, video src and poster.
@@ -2156,12 +2251,12 @@
         </div>
         <a class="ss-link" href="work.html">Explore Real Estate work <span aria-hidden="true">↗</span></a>
       </div>
+      <!-- </div>
   </div>
   </div>
-  </div>
-  </section>
+  </section> -->
 
-  <!-- <section class="ss-svcs" aria-labelledby="ss-svc-h">
+      <!-- <section class="ss-svcs" aria-labelledby="ss-svc-h">
     <div class="ss-wrap">
       <h2 id="ss-svc-h" class="ss-h3 reveal">Our <span class="font-serif-italic">services.</span></h2>
       <div class="ss-svc-grid"><a class="ss-svc" href="brand-strategy.html" style="--n:0"><span
@@ -2191,71 +2286,74 @@
     </div>
   </section> -->
 
-  <section class="ss-svcs ss-stk" aria-labelledby="ss-svc-h">
-    <div class="ss-wrap ss-stk-grid">
-      <div class="ss-stk-left">
-        <h2 id="ss-svc-h" class="ss-h2">Our <span class="font-serif-italic">services.</span></h2>
-        <p class="ss-sub">Your customers experience one brand. We bring positioning, design, digital and content
-          together
-          so your business becomes easier to understand, trust, and choose.</p>
-        <a class="ss-btn ss-btn-ghost" href="services.html">All services <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="ss-stk-cards">
-        <a class="ss-stk-card" href="brand-strategy.html" style="--i:0">
-          <span class="ss-stk-label"><span>01</span>Positioning</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Brand Strategy</span><span class="ss-stk-desc">Clarifies
-              positioning and why customers should choose you.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="identity-design.html" style="--i:1">
-          <span class="ss-stk-label"><span>02</span>Recognition</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Identity &amp; Design</span><span
-              class="ss-stk-desc">Creates recognition and consistency across touchpoints.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="website-development.html" style="--i:2">
-          <span class="ss-stk-label"><span>03</span>Confidence</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Website &amp; Development</span><span
-              class="ss-stk-desc">Turns attention into confidence, with a clear next step.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="performance-marketing.html" style="--i:3">
-          <span class="ss-stk-label"><span>04</span>Measurable growth</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Performance Marketing</span><span
-              class="ss-stk-desc">Connects marketing investment to measurable objectives.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="film-photography.html" style="--i:4">
-          <span class="ss-stk-label"><span>05</span>Storytelling</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Content, Film &amp; Photography</span><span
-              class="ss-stk-desc">Makes the product, service, and experience tangible.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="influencer-marketing.html" style="--i:5">
-          <span class="ss-stk-label"><span>06</span>Reach</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Influencer Marketing</span><span
-              class="ss-stk-desc">Builds
-              familiarity and reach through relevant creators.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="offline-marketing.html" style="--i:6">
-          <span class="ss-stk-label"><span>07</span>Presence</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Offline Marketing</span><span class="ss-stk-desc">Extends
-              brand presence into physical environments.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-        <a class="ss-stk-card" href="market%20research-consultations.html" style="--i:7">
-          <span class="ss-stk-label"><span>08</span>Insight</span>
-          <span class="ss-stk-body"><span class="ss-stk-title">Market Research</span><span class="ss-stk-desc">Reduces
-              uncertainty about customers, competitors, and opportunity.</span></span>
-          <span class="ss-stk-go" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
+      <section class="ss-svcs ss-stk" aria-labelledby="ss-svc-h">
+        <div class="ss-wrap ss-stk-grid">
+          <div class="ss-stk-left">
+            <h2 id="ss-svc-h" class="ss-h2">Our <span class="font-serif-italic">services.</span></h2>
+            <p class="ss-sub">Your customers experience one brand. We bring positioning, design, digital and content
+              together
+              so your business becomes easier to understand, trust, and choose.</p>
+            <a class="ss-btn ss-btn-ghost" href="services.html">All services <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="ss-stk-cards">
+            <a class="ss-stk-card" href="brand-strategy.html" style="--i:0">
+              <span class="ss-stk-label"><span>01</span>Positioning</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Brand Strategy</span><span
+                  class="ss-stk-desc">Clarifies
+                  positioning and why customers should choose you.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="identity-design.html" style="--i:1">
+              <span class="ss-stk-label"><span>02</span>Recognition</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Identity &amp; Design</span><span
+                  class="ss-stk-desc">Creates recognition and consistency across touchpoints.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="website-development.html" style="--i:2">
+              <span class="ss-stk-label"><span>03</span>Confidence</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Website &amp; Development</span><span
+                  class="ss-stk-desc">Turns attention into confidence, with a clear next step.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="performance-marketing.html" style="--i:3">
+              <span class="ss-stk-label"><span>04</span>Measurable growth</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Performance Marketing</span><span
+                  class="ss-stk-desc">Connects marketing investment to measurable objectives.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="film-photography.html" style="--i:4">
+              <span class="ss-stk-label"><span>05</span>Storytelling</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Content, Film &amp; Photography</span><span
+                  class="ss-stk-desc">Makes the product, service, and experience tangible.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="influencer-marketing.html" style="--i:5">
+              <span class="ss-stk-label"><span>06</span>Reach</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Influencer Marketing</span><span
+                  class="ss-stk-desc">Builds
+                  familiarity and reach through relevant creators.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="offline-marketing.html" style="--i:6">
+              <span class="ss-stk-label"><span>07</span>Presence</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Offline Marketing</span><span
+                  class="ss-stk-desc">Extends
+                  brand presence into physical environments.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+            <a class="ss-stk-card" href="market%20research-consultations.html" style="--i:7">
+              <span class="ss-stk-label"><span>08</span>Insight</span>
+              <span class="ss-stk-body"><span class="ss-stk-title">Market Research</span><span
+                  class="ss-stk-desc">Reduces
+                  uncertainty about customers, competitors, and opportunity.</span></span>
+              <span class="ss-stk-go" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
-  <!-- ============ 04 PROCESS & TRUST ============ -->
-  <!-- <section class="ss-process" id="process" aria-labelledby="ss-proc-h">
+      <!-- ============ 04 PROCESS & TRUST ============ -->
+      <!-- <section class="ss-process" id="process" aria-labelledby="ss-proc-h">
     <div class="ss-wrap">
       <div class="ss-head reveal">
         <p class="ss-eyebrow">How we work</p>
@@ -2314,7 +2412,7 @@
     </div>
   </section> -->
 
-  <!-- <section class="ss-proof" aria-labelledby="ss-proof-h">
+      <!-- <section class="ss-proof" aria-labelledby="ss-proof-h">
     <div class="ss-wrap">
       <div class="ss-head reveal">
         <p class="ss-eyebrow">Client perspectives</p>
@@ -2338,7 +2436,7 @@
     </div>
   </section> -->
 
-  <!-- <section class="ss-faqs" id="faq" aria-labelledby="ss-faq-h">
+      <!-- <section class="ss-faqs" id="faq" aria-labelledby="ss-faq-h">
     <div class="ss-wrap ss-faq-grid">
       <div class="ss-head reveal">
         <p class="ss-eyebrow">Questions</p>
@@ -2398,104 +2496,102 @@
     </div>
   </section> -->
 
-  <!-- ============ 05 CONVERSION HUB ============ -->
+      <!-- ============ 05 CONVERSION HUB ============ -->
 
-  <section class="ss-logos" aria-label="Businesses we've worked with">
+      <section class="ss-logos" aria-label="Businesses we've worked with">
+        <div class="ss-logos-track">
+          <span class="ss-logo" style="--h:3.4rem"><img src="assets/logos/galangal.webp" alt="Galangal" width="1162"
+              height="505" decoding="async"></span>
+          <span class="ss-logo" style="--h:3.8rem"><img src="assets/logos/tbq.webp" alt="TBQ" width="1425" height="1206"
+              decoding="async"></span>
+          <span class="ss-logo" style="--h:3.2rem"><img src="assets/logos/bgm%20club.webp" alt="Belgaum Club"
+              width="163" height="98" decoding="async"></span>
+          <span class="ss-logo" style="--h:3.6rem"><img src="assets/logos/koyla.webp" alt="Koyla" width="2056"
+              height="1205" decoding="async"></span>
+          <span class="ss-logo" style="--h:3.4rem"><img src="assets/logos/nfci.webp" alt="NFCI" width="2084"
+              height="1251" decoding="async"></span>
+          <span class="ss-logo" style="--h:2.8rem"><img src="assets/logos/niyaaz.webp" alt="Niyaaz" width="10644"
+              height="2983" decoding="async"></span>
+          <!-- <span class="ss-logo" style="--h:2.6rem"><img src="assets/images/AKPLogo.webp" alt="AKP Ferrocast" width="900"
+              height="322" decoding="async"></span> -->
+          <span class="ss-logo" style="--h:3.8rem"><img src="assets/logos/Kunafa.webp" alt="Kunafa" width="900"
+              height="322" decoding="async"></span>
+          <span class="ss-logo" style="--h:2.6rem"><img src="assets/logos/navieo.webp" alt="navieo" width="900"
+              height="322" decoding="async"></span>
 
-    <div class="ss-logos-track"><span class="ss-logo">Galangal<i aria-hidden="true"></i></span><span
-        class="ss-logo">TBQ<i aria-hidden="true"></i></span><span class="ss-logo">Belgaum Club<i
-          aria-hidden="true"></i></span><span class="ss-logo">Koyla<i aria-hidden="true"></i></span><span
-        class="ss-logo">Kunafa Story<i aria-hidden="true"></i></span><span class="ss-logo">NFCI<i
-          aria-hidden="true"></i></span><span class="ss-logo">Niyaaz<i aria-hidden="true"></i></span><span
-        class="ss-logo">Another Breakfast<i aria-hidden="true"></i></span><span class="ss-logo">AKP Ferrocast<i
-          aria-hidden="true"></i></span><span class="ss-logo">Aassal Mawla Darbar<i aria-hidden="true"></i></span><span
-        class="ss-logo">Yali Rudraksha<i aria-hidden="true"></i></span><span class="ss-logo">GEE<i
-          aria-hidden="true"></i></span><span class="ss-logo">LA Amores<i aria-hidden="true"></i></span><span
-        class="ss-logo">Malya Wedding Planner<i aria-hidden="true"></i></span><span class="ss-logo">ME 2 Hair<i
-          aria-hidden="true"></i></span><span class="ss-logo">Navieo<i aria-hidden="true"></i></span><span
-        class="ss-logo">Ocean Plate<i aria-hidden="true"></i></span><span class="ss-logo">Sunny&#x27;s In A Bottle<i
-          aria-hidden="true"></i></span><span class="ss-logo">Untanned<i aria-hidden="true"></i></span><span
-        class="ss-logo">Author &amp; Ink<i aria-hidden="true"></i></span><span class="ss-logo">Galangal<i
-          aria-hidden="true"></i></span><span class="ss-logo">TBQ<i aria-hidden="true"></i></span><span
-        class="ss-logo">Belgaum Club<i aria-hidden="true"></i></span><span class="ss-logo">Koyla<i
-          aria-hidden="true"></i></span><span class="ss-logo">Kunafa Story<i aria-hidden="true"></i></span><span
-        class="ss-logo">NFCI<i aria-hidden="true"></i></span><span class="ss-logo">Niyaaz<i
-          aria-hidden="true"></i></span><span class="ss-logo">Another Breakfast<i aria-hidden="true"></i></span><span
-        class="ss-logo">AKP Ferrocast<i aria-hidden="true"></i></span><span class="ss-logo">Aassal Mawla Darbar<i
-          aria-hidden="true"></i></span><span class="ss-logo">Yali Rudraksha<i aria-hidden="true"></i></span><span
-        class="ss-logo">GEE<i aria-hidden="true"></i></span><span class="ss-logo">LA Amores<i
-          aria-hidden="true"></i></span><span class="ss-logo">Malya Wedding Planner<i
-          aria-hidden="true"></i></span><span class="ss-logo">ME 2 Hair<i aria-hidden="true"></i></span><span
-        class="ss-logo">Navieo<i aria-hidden="true"></i></span><span class="ss-logo">Ocean Plate<i
-          aria-hidden="true"></i></span><span class="ss-logo">Sunny&#x27;s In A Bottle<i
-          aria-hidden="true"></i></span><span class="ss-logo">Untanned<i aria-hidden="true"></i></span><span
-        class="ss-logo">Author &amp; Ink<i aria-hidden="true"></i></span></div>
-  </section>
+          <!-- To add another brand: copy one line above, change src, alt, width/height (the image's real size)
+               and --h (logo height; bigger number = bigger logo).
+               Brands still waiting for a logo file: Kunafa Story, Another Breakfast, Aassal Mawla Darbar,
+               Yali Rudraksha, GEE, LA Amores, Malya Wedding Planner, ME 2 Hair, Navieo, Ocean Plate,
+               Sunny's In A Bottle, Untanned, Author &amp; Ink -->
+        </div>
+      </section>
 
-  <section class="ss-final" id="start" aria-labelledby="ss-final-h">
-    <div class="ss-final-marquee" aria-hidden="true">
+      <section class="ss-final" id="start" aria-labelledby="ss-final-h">
+        <div class="ss-final-marquee" aria-hidden="true">
 
-      <div class="ss-wrap ss-final-inner">
-        <p class="ss-eyebrow ss-eyebrow-light reveal">Let's talk</p>
-        <h2 id="ss-final-h" class="ss-mega ss-final-h reveal">Let's build something <span class="font-serif-italic">that
-            lasts.</span></h2>
-        <p class="ss-final-p reveal">We reply within 24 hours.</p>
-        <!-- <div class="ss-cta-row reveal">
+          <div class="ss-wrap ss-final-inner">
+            <p class="ss-eyebrow ss-eyebrow-light reveal">Let's talk</p>
+            <h2 id="ss-final-h" class="ss-mega ss-final-h reveal">Let's build something <span
+                class="font-serif-italic">that
+                lasts.</span></h2>
+            <p class="ss-final-p reveal">We reply within 24 hours.</p>
+            <!-- <div class="ss-cta-row reveal">
         <a href="contact.html" class="ss-btn ss-btn-white">Book a Strategy Call</a>
         <a href="contact.html" class="ss-btn ss-btn-line">Tell Us About Your Project <span
             aria-hidden="true">↗</span></a>
       </div> -->
 
-        <div class="ss-final-form reveal">
-          <div class="contact-info">
-            <div>
-              <p class="lbl">Email</p>
-              <a href="mailto:hello@socialsanta.studio" class="link-underline">hello@socialsanta.studio</a>
-            </div>
-            <div>
-              <p class="lbl">Phone</p>
-              <a href="tel:+918792757839" class="link-underline">+91 87927 57839</a>
-            </div>
-            <div>
-              <p class="lbl">Studios</p>
-              <p class="val">Belagavi · Mumbai</p>
-            </div>
-          </div>
-
-          <div>
-            <div class="thanks" id="thanks" hidden>
-              <p class="emoji">🎁</p>
-              <h3>Your wish is on its way.</h3>
-              <p class="s">Your email app should have opened with the message ready to send.</p>
-            </div>
-            <form class="form" id="contact-form">
-              <input required name="name" placeholder="Your name" class="field">
-              <input required type="email" name="email" placeholder="Email address" class="field">
-              <input name="company" placeholder="Brand / company" class="field">
-              <div>
-                <p class="interest-label">I'm interested in…</p>
-                <div class="chips">
-                  <button type="button" class="interest" data-interest="Branding">Branding</button>
-                  <button type="button" class="interest" data-interest="Website">Website</button>
-                  <button type="button" class="interest" data-interest="Social media">Social media</button>
-                  <button type="button" class="interest" data-interest="Performance">Performance</button>
-                  <button type="button" class="interest" data-interest="Production">Production</button>
-                  <button type="button" class="interest" data-interest="Not sure yet">Not sure yet</button>
+            <div class="ss-final-form reveal">
+              <div class="contact-info">
+                <div>
+                  <p class="lbl">Email</p>
+                  <a href="mailto:hello@socialsanta.studio" class="link-underline">hello@socialsanta.studio</a>
+                </div>
+                <div>
+                  <p class="lbl">Phone</p>
+                  <a href="tel:+918792757839" class="link-underline">+91 87927 57839</a>
+                </div>
+                <div>
+                  <p class="lbl">Studios</p>
+                  <p class="val">Belagavi · Mumbai</p>
                 </div>
               </div>
-              <textarea required name="message" rows="4" placeholder="Tell us about the project"
-                class="field"></textarea>
-              <button class="send-btn">Send message →</button>
-            </form>
+
+              <div>
+                <div class="thanks" id="thanks" hidden>
+                  <p class="emoji">🎁</p>
+                  <h3>Your wish is on its way.</h3>
+                  <p class="s">Your email app should have opened with the message ready to send.</p>
+                </div>
+                <form class="form" id="contact-form">
+                  <input required name="name" placeholder="Your name" class="field">
+                  <input required type="email" name="email" placeholder="Email address" class="field">
+                  <input name="company" placeholder="Brand / company" class="field">
+                  <div>
+                    <p class="interest-label">I'm interested in…</p>
+                    <div class="chips">
+                      <button type="button" class="interest" data-interest="Branding">Branding</button>
+                      <button type="button" class="interest" data-interest="Website">Website</button>
+                      <button type="button" class="interest" data-interest="Social media">Social media</button>
+                      <button type="button" class="interest" data-interest="Performance">Performance</button>
+                      <button type="button" class="interest" data-interest="Production">Production</button>
+                      <button type="button" class="interest" data-interest="Not sure yet">Not sure yet</button>
+                    </div>
+                  </div>
+                  <textarea required name="message" rows="4" placeholder="Tell us about the project"
+                    class="field"></textarea>
+                  <button class="send-btn">Send message →</button>
+                </form>
+              </div>
+            </div>
+
+
           </div>
-        </div>
+      </section>
 
 
-      </div>
-  </section>
-
-
-  <!-- <section class="ss-proof" aria-labelledby="ss-proof-h">
+      <!-- <section class="ss-proof" aria-labelledby="ss-proof-h">
     <div class="ss-wrap">
       <div class="ss-head reveal">
       </div>
@@ -2588,38 +2684,38 @@
 
 
 
-  </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="reveal">
-        <h2 class="footer-title">Let's build something <span class="font-serif-italic text-primary">people
-            trust.</span></h2>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="reveal">
+          <h2 class="footer-title">Let's build something <span class="font-serif-italic text-primary">people
+              trust.</span></h2>
+        </div>
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand">social<span class="text-primary">santa.</span></p>
+            <p class="footer-note">360° marketing studio — Belagavi &amp; Mumbai.</p>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Pages</p>
+            <a href="about.html">About</a><a href="services.html">Services</a><a href="work.html">Work</a><a
+              href="contact.html">Contact</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Say hello</p>
+            <a href="mailto:hello@socialsanta.studio">hello@socialsanta.studio</a>
+            <a href="tel:+918792757839">+91 87927 57839</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Studios</p>
+            <p>Belagavi</p>
+            <p>Mumbai</p>
+          </div>
+        </div>
+        <p class="footer-copy">© <span id="year">2026</span> Social Santa. Empowering businesses worldwide through
+          creativity.</p>
       </div>
-      <div class="footer-grid">
-        <div>
-          <p class="footer-brand">social<span class="text-primary">santa.</span></p>
-          <p class="footer-note">360° marketing studio — Belagavi &amp; Mumbai.</p>
-        </div>
-        <div class="footer-col">
-          <p class="footer-label">Pages</p>
-          <a href="about.html">About</a><a href="services.html">Services</a><a href="work.html">Work</a><a
-            href="contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-label">Say hello</p>
-          <a href="mailto:hello@socialsanta.studio">hello@socialsanta.studio</a>
-          <a href="tel:+918792757839">+91 87927 57839</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-label">Studios</p>
-          <p>Belagavi</p>
-          <p>Mumbai</p>
-        </div>
-      </div>
-      <p class="footer-copy">© <span id="year">2026</span> Social Santa. Empowering businesses worldwide through
-        creativity.</p>
-    </div>
-  </footer>
+    </footer>
   </div>
   <script src="script.js"></script>
 
